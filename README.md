@@ -1,8 +1,10 @@
 # LLM-QE: Improving Query Expansion by Aligning Large Language Models with Ranking Preferences
 
-Source code for our paper :
-LLM-QE: Improving Query Expansion by Aligning Large Language
-Models with Ranking Preferences (Coming soon...)
+[![GitHub](https://img.shields.io/badge/GitHub-LLM--QE-black?logo=github)](https://github.com/NEUIR/LLM-QE)
+[![arXiv](https://img.shields.io/badge/arXiv-2502.17057-B31B1B?logo=arxiv&logoColor=white)](https://arxiv.org/abs/2502.17057)
+[![HuggingFace](https://img.shields.io/badge/HuggingFace-LLM--QE-yellow?logo=huggingface)](https://huggingface.co/yaosijiaaaaa/LLM-QE-DPO)
+[![HuggingFace](https://img.shields.io/badge/HuggingFace-LLM--QE-orange)](https://huggingface.co/yaosijiaaaaa/LLM-QE-Contriever)
+
 
 ## Overview
 We introduce LLM-QE, a novel approach that leverages Large Language Models (LLMs) to generate document-based query expansions, thereby enhancing dense retrieval models. 
