@@ -39,7 +39,7 @@ pip install -e .
 ```
 
 ## 2. Training LLM-QE:
-You can download the lora checkpoints of LLM-QE directly from here and merge them, or follow the flow below to train LLM-QE.
+You can download the lora checkpoints of LLM-QE directly from [here](https://huggingface.co/yaosijiaaaaa/LLM-QE-DPO/tree/main) and merge them, or follow the flow below to train LLM-QE.
 
 ### 2.1 Prepare the data
 we use the public portion of dataset curated by authors of [Repetition Improves Language Model Embeddings](https://arxiv.org/abs/2402.15449). The dataset can be downloaded from the [GitHub page of Echo embeddings repository](https://github.com/jakespringer/echo-embeddings#training). To use the training script, the downloaded dataset should be placed in the `data` directory. The directory layout should be as follows:
