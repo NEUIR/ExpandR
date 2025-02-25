@@ -2,8 +2,8 @@
 
 [![GitHub](https://img.shields.io/badge/GitHub-LLM--QE-black?logo=github)](https://github.com/NEUIR/LLM-QE)
 [![arXiv](https://img.shields.io/badge/arXiv-2502.17057-B31B1B?logo=arxiv&logoColor=white)](https://arxiv.org/abs/2502.17057)
-[![HuggingFace](https://img.shields.io/badge/HuggingFace-LLM--QE-yellow?logo=huggingface)](https://huggingface.co/yaosijiaaaaa/LLM-QE-DPO)
-[![HuggingFace](https://img.shields.io/badge/HuggingFace-LLM--QE-orange)](https://huggingface.co/yaosijiaaaaa/LLM-QE-Contriever)
+[![HuggingFace](https://img.shields.io/badge/HuggingFace-LLM--QE--DPO-yellow?logo=huggingface)](https://huggingface.co/yaosijiaaaaa/LLM-QE-DPO)
+[![HuggingFace](https://img.shields.io/badge/HuggingFace-LLM--QE--Contriever-orange)](https://huggingface.co/yaosijiaaaaa/LLM-QE-Contriever)
 
 
 ## Overview
