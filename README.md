@@ -5,6 +5,7 @@
 [![HuggingFace](https://img.shields.io/badge/HuggingFace-LLM--QE--DPO-yellow?logo=huggingface)](https://huggingface.co/yaosijiaaaaa/LLM-QE-DPO)
 [![HuggingFace](https://img.shields.io/badge/HuggingFace-LLM--QE--Contriever-orange)](https://huggingface.co/yaosijiaaaaa/LLM-QE-Contriever)
 
+If you find this work useful, please cite our paper and give us a shining star 🌟
 
 ## Overview
 We introduce LLM-QE, a novel approach that leverages Large Language Models (LLMs) to generate document-based query expansions, thereby enhancing dense retrieval models. 
