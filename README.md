@@ -5,16 +5,15 @@
 [![HuggingFace](https://img.shields.io/badge/HuggingFace-LLM--QE--DPO-yellow?logo=huggingface)](https://huggingface.co/yaosijiaaaaa/LLM-QE-DPO)
 [![HuggingFace](https://img.shields.io/badge/HuggingFace-LLM--QE--Contriever-orange)](https://huggingface.co/yaosijiaaaaa/LLM-QE-Contriever)
 
-If you find this work useful, please cite our paper and give us a shining star 🌟
 
-## Overview
+## 📖 Overview
 We introduce LLM-QE, a novel approach that leverages Large Language Models (LLMs) to generate document-based query expansions, thereby enhancing dense retrieval models. 
 
 LLM-QE designs both rank-based and answer-based rewards and uses these reward models to optimize LLMs to align with the ranking preferences of both retrievers and LLMs, thus mitigating the hallucination of LLMs during query expansion. 
 ![method](assets/model.png)
 
 
-## 1. Setup
+## ⚙️ Setup
 (1) Use `git clone` to download this project:
 ```
 git clone git@github.com:NEUIR/LLM-QE.git
@@ -39,10 +38,10 @@ cd src/beir
 pip install -e .
 ```
 
-## 2. Training LLM-QE:
+## 🏋️‍♂️ Training LLM-QE:
 You can download the lora checkpoints of LLM-QE directly from [here](https://huggingface.co/yaosijiaaaaa/LLM-QE-DPO/tree/main) and merge them, or follow the flow below to train LLM-QE.
 
-### 2.1 Prepare the data
+### 1. Prepare the data
 we use the public portion of dataset curated by authors of [Repetition Improves Language Model Embeddings](https://arxiv.org/abs/2402.15449). The dataset can be downloaded from the [GitHub page of Echo embeddings repository](https://github.com/jakespringer/echo-embeddings#training). To use the training script, the downloaded dataset should be placed in the `data` directory. The directory layout should be as follows:
 
 ```
@@ -63,7 +62,7 @@ Then run the following command to randomly split the data into two parts:
 python LLM-QE/src/split.py
 ```
 
-### 2.2 DPO Training
+### 2. DPO Training
 (1) First step: Download the related model
 
 You need to download [lama3-8B-Instruct](https://huggingface.co/meta-llama/Meta-Llama-3-8B-Instruct) model as the vanilla Generation Model.
@@ -87,7 +86,7 @@ You need to combine the weights of the Generation model trained using lora in Th
 ```
 bash merge_lora.sh
 ```
-###  2.3 Supervised contrastive training
+###  3. Supervised contrastive training
 (1) First step: Download the related model
 
 You need to download [Contriever](https://huggingface.co/facebook/contriever/tree/main) model as the vanilla retriever Model.
@@ -105,14 +104,28 @@ After constructing the training data, you can start training the retriever model
 bash supervised_train.sh
 ```
 
-## 3. Evaluating LLM-QE
+## 📊 Evaluation
 After training the LLM-QE model, you can test the performance of LLM-QE on Beir using the following command.
 
 ```
 bash eval_beir_15.sh
 ```
 
-## Contact
+## 📚 Citation
+If you find this work useful, please cite our paper and give us a shining star 🌟
+```
+@misc{yao2025llmqeimprovingqueryexpansion,
+      title={LLM-QE: Improving Query Expansion by Aligning Large Language Models with Ranking Preferences}, 
+      author={Sijia Yao and Pengcheng Huang and Zhenghao Liu and Yu Gu and Yukun Yan and Shi Yu and Ge Yu},
+      year={2025},
+      eprint={2502.17057},
+      archivePrefix={arXiv},
+      primaryClass={cs.IR},
+      url={https://arxiv.org/abs/2502.17057}, 
+}
+```
+
+## ✉️ Contact
 If you have questions, suggestions, and bug reports, please email:
 ```
 ysj1426746590@outlook.com
