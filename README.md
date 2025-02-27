@@ -86,7 +86,7 @@ You need to combine the weights of the Generation model trained using lora in Th
 ```
 bash merge_lora.sh
 ```
-###  3. Supervised contrastive training
+###  3. Supervised Contrastive Training
 (1) First step: Download the related model
 
 You need to download [Contriever](https://huggingface.co/facebook/contriever/tree/main) model as the vanilla retriever Model.
