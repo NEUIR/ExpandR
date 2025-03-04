@@ -30,6 +30,7 @@ vllm==0.5.0.post1
 accelerate==1.3.0
 deepspeed==0.14.4
 peft==0.11.1
+faiss-gpu==1.7.2
 jsonlines
 ```
 (3) Install the modified `beir`:
