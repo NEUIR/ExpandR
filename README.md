@@ -4,6 +4,9 @@
 [![arXiv](https://img.shields.io/badge/arXiv-2502.17057-B31B1B?logo=arxiv&logoColor=white)](https://arxiv.org/abs/2502.17057)
 [![HuggingFace](https://img.shields.io/badge/HuggingFace-LLM--QE--DPO-yellow?logo=huggingface)](https://huggingface.co/yaosijiaaaaa/LLM-QE-DPO)
 [![HuggingFace](https://img.shields.io/badge/HuggingFace-LLM--QE--Contriever-orange)](https://huggingface.co/yaosijiaaaaa/LLM-QE-Contriever)
+[![HuggingFace](https://img.shields.io/badge/HuggingFace-DPO--Training--Data-blue?logo=huggingface)](https://huggingface.co/datasets/chengpingan/LLM-QE-DPO-Training-Data)
+[![HuggingFace](https://img.shields.io/badge/HuggingFace-Retriever--Training--Data-green?logo=huggingface)](https://huggingface.co/datasets/chengpingan/LLM-QE-Retriever-Training-Data)
+
 
 
 ## 📖 Overview
