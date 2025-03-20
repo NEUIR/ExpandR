@@ -50,7 +50,7 @@ def generate_docs(args, data_dir, dataname_list):
     
     for dataname in dataname_list:
         print(f"Dataname is {dataname}")
-        query_file_name = 'queries_new.jsonl'
+        query_file_name = 'queries.jsonl'
         query_path = os.path.join(data_dir, dataname, query_file_name)
         queries = datasets.load_dataset('json', data_files=[query_path], split="train")
         query_texts = [query['text'] for query in queries]
