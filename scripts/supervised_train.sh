@@ -1,7 +1,7 @@
 
 formatted_time=$(date +"%Y%m%d%H%M%S")
 echo $formatted_time
-CUDA_VISIBLE_DEVICES=1,2 nohup torchrun --nproc_per_node 2 --master_port=29501 \
+CUDA_VISIBLE_DEVICES=1,2 torchrun --nproc_per_node 2 --master_port=29501 \
     LLM-QE/src/train/supervised/run.py \
     --output_dir LLM-QE/model/supervised_ckpts/$formatted_time/ \
     --model_name_or_path LLM-QE/model/base_model/contriever \
@@ -22,4 +22,4 @@ CUDA_VISIBLE_DEVICES=1,2 nohup torchrun --nproc_per_node 2 --master_port=29501 \
     --save_steps 200 \
     --eval_steps 200 \
     --report_to tensorboard \
-    --logging_dir LLM-QE/model/supervised_ckpts/$formatted_time//logdir/ 
+    --logging_dir LLM-QE/model/supervised_ckpts/$formatted_time/logdir/ 
