@@ -53,7 +53,11 @@ data
     ├─ eli5_question_answer.jsonl
     ├─ fever.jsonl 
     ├─ hotpot_qa.jsonl
-    ...
+    ├─ msmarco_document.jsonl
+    ├─ msmaroc_passage.jsonl
+    ├─ nq.jsonl
+    ├─ squad.jsonl
+    ├─ trivia_qa.jsonl
 ```
 To merge these data, use the following command:
 ```
