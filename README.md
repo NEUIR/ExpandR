@@ -43,7 +43,6 @@ pip install -e .
 ```
 
 ## 🏋️‍♂️ Training LLM-QE:
-You can download the lora checkpoints of LLM-QE directly from [here](https://huggingface.co/yaosijiaaaaa/LLM-QE-DPO/tree/main) and merge them, or follow the flow below to train LLM-QE.
 
 ### 1. Prepare the Data
 we use the public portion of dataset curated by authors of [Repetition Improves Language Model Embeddings](https://arxiv.org/abs/2402.15449). The dataset can be downloaded from the [GitHub page of Echo embeddings repository](https://github.com/jakespringer/echo-embeddings#training). To use the training script, the downloaded dataset should be placed in the `data` directory. The directory layout should be as follows:
@@ -67,13 +66,15 @@ python LLM-QE/src/split.py
 ```
 
 ### 2. DPO Training
+You can download the lora checkpoint of LLM-QE directly from [here](https://huggingface.co/yaosijiaaaaa/LLM-QE-DPO) and merge them, or follow the flow below to train LLM-QE.
+
 (1) First step: Download the related model
 
 You need to download [lama3-8B-Instruct](https://huggingface.co/meta-llama/Meta-Llama-3-8B-Instruct) model as the vanilla Generation Model.
 
 (2) Second step: Construct dpo training data
 
-Then you can construct a dataset for dpo training by running this script, which includes multiple steps such as generating query expansion using LLM, reward model filtering data, and dividing the dataset.
+Then you can construct a dataset for dpo training by running this script, which includes multiple steps such as generating query expansion using LLM, reward model filtering data, and dividing the dataset. Our constructed dataset has been uploaded to [huggingface](https://huggingface.co/datasets/chengpingan/LLM-QE-DPO-Training-Data). You can download and use them directly.
 ```
 cd LLM-QE/scripts
 bash gen_dpo_data.sh
@@ -91,13 +92,15 @@ You need to combine the weights of the Generation model trained using lora in Th
 bash merge_lora.sh
 ```
 ###  3. Supervised Contrastive Training
+You can download the checkpoint of our trained Contriever directly from [here](https://huggingface.co/yaosijiaaaaa/LLM-QE-Contriever) and use it, or follow the flow below to train it.
+
 (1) First step: Download the related model
 
 You need to download [Contriever](https://huggingface.co/facebook/contriever/tree/main) model as the vanilla retriever Model.
 
 (2) Second step: Construct supervised contrastive training data
 
-Then you can construct a dataset for supervised training by running this script, which includes generating query expansion using LLM and dividing the dataset.
+Then you can construct a dataset for supervised training by running this script, which includes generating query expansion using LLM and dividing the dataset. Our constructed dataset has been uploaded to [huggingface](https://huggingface.co/datasets/chengpingan/LLM-QE-Retriever-Training-Data). You can download and use them directly.
 ```
 bash gen_supervised_data.sh
 ```
