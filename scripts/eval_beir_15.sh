@@ -11,7 +11,7 @@ BEIR_DIR=LLM-QE/data/beir
 
 EMBEDDINGS_FILE_DIR=LLM-QE/data/corpus_embeddings
 
-MODEL_PATH='' # the path to dpo-llama
+MODEL_PATH='' # The path of the trained Contriever model
 
 OUTPUT_DIR_BASE='' # the path to save eval results
 
