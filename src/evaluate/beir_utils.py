@@ -71,7 +71,7 @@ class DenseEncoderModel:
             # def flatten(list_of_lists):
             #     return list(itertools.chain.from_iterable(list_of_lists))
 
-            # queries = flatten(queries) # 针对于每一个query：8个passage+query，所有都放在一个列表里面
+            # queries = flatten(queries) 
             
             if self.normalize_text:
                 queries = [normalize_text.normalize(q) for q in queries]
@@ -88,7 +88,6 @@ class DenseEncoderModel:
                     end_idx = min((k + 1) * batch_size, len(queries))
                     # import pdb
                     # pdb.set_trace()
-                    # 编码queries
                     qencode = self.tokenizer.batch_encode_plus(
                         queries[start_idx:end_idx],
                         max_length=self.max_length,
@@ -99,7 +98,7 @@ class DenseEncoderModel:
                     )
                     qencode = {key: value.cuda() for key, value in qencode.items()}
                     qemb = self.query_encoder(**qencode, normalize=self.norm_query)
-                    # 编码 pseudo docs
+                    
                     dencode = self.tokenizer.batch_encode_plus(
                         pseudo_docs[start_idx:end_idx],
                         max_length=self.max_length,
@@ -111,9 +110,7 @@ class DenseEncoderModel:
                     dencode = {key: value.cuda() for key, value in dencode.items()}
                     demb = self.query_encoder(**dencode, normalize=self.norm_query)
                     
-                    # logger.info("emb shape before is: {}".format(emb.shape))
-                    # 对emb进行平均
-                    # emb = torch.mean(emb, dim=0, keepdim=True)
+                    
                     emb = qemb * 0.5 + demb * 0.5
                     # logger.info("emb shape after is: {}".format(emb.shape))
                     allemb.append(emb.cpu())
@@ -132,7 +129,7 @@ class DenseEncoderModel:
         
        
     def encode_corpus(self, corpus: List[Dict[str, str]], batch_size: int, **kwargs):
-            # batch_size = 2048
+            
             if dist.is_initialized():
                 idx = np.array_split(range(len(corpus)), dist.get_world_size())[dist.get_rank()]
             else:
