@@ -11,7 +11,7 @@ import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument("--model_name_or_path", type=str, 
                     default=None)
-parser.add_argument("--outdir", action='store_true',
+parser.add_argument("--outdir", type=str,
                         help="The path of dpo data."
                         )
 parser.add_argument("--task_type", type=str, 
