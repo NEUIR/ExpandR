@@ -28,7 +28,7 @@ python get_query_posi_doc32_ans.py \
 
 # construct dpo data
 CUDA_VISIBLE_DEVICES=1 python construct_dpo_data.py \
-    --model_name_or_path LLM-QE/model/base_model/Llama-3-8B-Instruct \
+    --model_name_or_path LLM-QE/model/base_model/contriever \
     --outdir LLM-QE/data/process_data/dpo-data/gen-data \
     --task_type q2d
 
