@@ -45,7 +45,7 @@ def main():
                         default=None,
                         help="The path of dev data (70,874)."
                         )
-    parser.add_argument("--dev_num", type=str, 
+    parser.add_argument("--dev_num", type=int, 
                         default=None,
                         help="The number of dev data."
                         )
