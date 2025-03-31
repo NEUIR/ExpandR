@@ -5,7 +5,7 @@ import torch
 import transformers
 from transformers import BertModel, XLMRobertaModel
 
-from src import utils
+import utils
 
 
 class Contriever(BertModel):
