@@ -9,7 +9,6 @@ import contriever
 import beir_utils
 import utils
 import dist_utils
-from src.flagmodel import FlagModel
 
 from transformers import RobertaTokenizer, RobertaConfig
 
@@ -90,7 +89,9 @@ if __name__ == "__main__":
         "--normalize_text", action="store_true", help="Apply function to normalize some common characters"
     )
     parser.add_argument("--save_results_path", type=str, default=None, help="Path to save result object")
-
+    parser.add_argument(
+        "--score_function", type=str, default="dot", help="Metric used to compute similarity between two embeddings"
+    )
     parser.add_argument("--local_rank", type=int, default=-1, help="For distributed training: local_rank")
     parser.add_argument("--main_port", type=int, default=-1, help="Main port (for multi-node SLURM jobs)")
     parser.add_argument("--query_file_name", type=str, default='queries.jsonl', help="query file name")
