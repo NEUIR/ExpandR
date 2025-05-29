@@ -66,7 +66,7 @@ cat *.jsonl > merge_data_80w.jsonl
 ```
 Then run the following command to randomly split the data into two parts:
 ```
-python LLM-QE/src/split.py
+python ExpandR/src/split.py
 ```
 
 ###  2. Supervised Contrastive Training
