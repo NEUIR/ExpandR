@@ -1,9 +1,9 @@
 # ExpandR: Teaching Dense Retrievers Beyond Queries with LLM Guidance
 
-[![GitHub](https://img.shields.io/badge/GitHub-LLM--QE-black?logo=github)](https://github.com/NEUIR/LLM-QE)
+[![GitHub](https://img.shields.io/badge/GitHub-ExpandR-black?logo=github)](https://github.com/NEUIR/ExpandR)
 [![arXiv](https://img.shields.io/badge/arXiv-2502.17057-B31B1B?logo=arxiv&logoColor=white)](https://arxiv.org/abs/2502.17057)
-[![HuggingFace](https://img.shields.io/badge/HuggingFace-LLM--QE--DPO-yellow?logo=huggingface)](https://huggingface.co/yaosijiaaaaa/LLM-QE-DPO)
-[![HuggingFace](https://img.shields.io/badge/HuggingFace-LLM--QE--Contriever-orange?logo=huggingface)](https://huggingface.co/yaosijiaaaaa/LLM-QE-Contriever)
+[![HuggingFace](https://img.shields.io/badge/HuggingFace-ExpandR--DPO-yellow?logo=huggingface)](https://huggingface.co/yaosijiaaaaa/LLM-QE-DPO)
+[![HuggingFace](https://img.shields.io/badge/HuggingFace-ExpandR--Contriever-orange?logo=huggingface)](https://huggingface.co/yaosijiaaaaa/LLM-QE-Contriever)
 [![HuggingFace](https://img.shields.io/badge/HuggingFace-DPO--Training--Data-blue?logo=huggingface)](https://huggingface.co/datasets/chengpingan/LLM-QE-DPO-Training-Data)
 [![HuggingFace](https://img.shields.io/badge/HuggingFace-Retriever--Training--Data-green?logo=huggingface)](https://huggingface.co/datasets/chengpingan/LLM-QE-Retriever-Training-Data)
 
@@ -69,7 +69,27 @@ Then run the following command to randomly split the data into two parts:
 python LLM-QE/src/split.py
 ```
 
-### 2. DPO Training
+###  2. Supervised Contrastive Training
+You can download the checkpoint of our trained Contriever directly from [here](https://huggingface.co/yaosijiaaaaa/LLM-QE-Contriever) and use it, or follow the flow below to train it.
+
+(1) First step: Download the related model
+
+You need to download [Contriever](https://huggingface.co/facebook/contriever/tree/main) model as the vanilla retriever Model.
+
+(2) Second step: Construct supervised contrastive training data
+
+Then you can construct a dataset for supervised training by running this script, which includes generating query expansion using LLM and dividing the dataset. Our constructed dataset has been uploaded to [huggingface](https://huggingface.co/datasets/chengpingan/LLM-QE-Retriever-Training-Data). You can download and use them directly.
+```
+bash gen_supervised_data.sh
+```
+(3) Third step: Training the retriever Model
+
+After constructing the training data, you can start training the retriever model. 
+```
+bash supervised_train.sh
+```
+
+### 3. DPO Training
 You can download the lora checkpoint of LLM-QE directly from [here](https://huggingface.co/yaosijiaaaaa/LLM-QE-DPO) and merge them, or follow the flow below to train LLM-QE.
 
 (1) First step: Download the related model
@@ -95,28 +115,9 @@ You need to combine the weights of the Generation model trained using lora in Th
 ```
 bash merge_lora.sh
 ```
-###  3. Supervised Contrastive Training
-You can download the checkpoint of our trained Contriever directly from [here](https://huggingface.co/yaosijiaaaaa/LLM-QE-Contriever) and use it, or follow the flow below to train it.
-
-(1) First step: Download the related model
-
-You need to download [Contriever](https://huggingface.co/facebook/contriever/tree/main) model as the vanilla retriever Model.
-
-(2) Second step: Construct supervised contrastive training data
-
-Then you can construct a dataset for supervised training by running this script, which includes generating query expansion using LLM and dividing the dataset. Our constructed dataset has been uploaded to [huggingface](https://huggingface.co/datasets/chengpingan/LLM-QE-Retriever-Training-Data). You can download and use them directly.
-```
-bash gen_supervised_data.sh
-```
-(3) Third step: Training the retriever Model
-
-After constructing the training data, you can start training the retriever model. 
-```
-bash supervised_train.sh
-```
 
 ## 📊 Evaluation
-After training the LLM-QE model, you can test the performance of LLM-QE on Beir using the following command.
+After training the ExpandR model, you can test the performance of ExpandR on Beir using the following command (Multi-GPU evaluation is supported).
 
 ```
 bash eval_beir_15.sh
