@@ -1,4 +1,4 @@
-# LLM-QE: Improving Query Expansion by Aligning Large Language Models with Ranking Preferences
+# ExpandR: Teaching Dense Retrievers Beyond Queries with LLM Guidance
 
 [![GitHub](https://img.shields.io/badge/GitHub-LLM--QE-black?logo=github)](https://github.com/NEUIR/LLM-QE)
 [![arXiv](https://img.shields.io/badge/arXiv-2502.17057-B31B1B?logo=arxiv&logoColor=white)](https://arxiv.org/abs/2502.17057)
@@ -10,17 +10,17 @@
 
 
 ## 📖 Overview
-We introduce LLM-QE, a novel approach that leverages Large Language Models (LLMs) to generate document-based query expansions, thereby enhancing dense retrieval models. 
+We introduce ExpandR, a joint optimization framework that enhances dense retrieval by aligning Large Language Models (LLMs) with retriever preferences through query expansion.
 
-LLM-QE designs both rank-based and answer-based rewards and uses these reward models to optimize LLMs to align with the ranking preferences of both retrievers and LLMs, thus mitigating the hallucination of LLMs during query expansion. 
+ExpandR prompts LLMs to generate query expansions and uses them to guide both retriever training and LLM refinement. To improve alignment, ExpandR incorporates retriever reward and self-reward signals and applies Direct Preference Optimization (DPO) to fine-tune the LLM. This joint training strategy encourages the LLM to generate expansions that are not only semantically rich but also tailored to the retrieval utility of dense retrievers. 
 ![method](assets/model.png)
 
 
 ## ⚙️ Setup
 (1) Use `git clone` to download this project:
 ```
-git clone git@github.com:NEUIR/LLM-QE.git
-cd LLM-QE
+git clone git@github.com:NEUIR/ExpandR.git
+cd ExpandR
 ```
 (2) Install the following packages using Pip or Conda under your environment
 ```
@@ -42,7 +42,7 @@ cd src/beir
 pip install -e .
 ```
 
-## 🏋️‍♂️ Training LLM-QE:
+## 🏋️‍♂️ Training ExpandR:
 
 ### 1. Prepare the Data
 we use eight datasets from the public portion of dataset curated by authors of [Repetition Improves Language Model Embeddings](https://arxiv.org/abs/2402.15449). The dataset can be downloaded from the [GitHub page of Echo embeddings repository](https://github.com/jakespringer/echo-embeddings#training). To use the training script, the downloaded dataset should be placed in the `data` directory. The directory layout should be as follows:
