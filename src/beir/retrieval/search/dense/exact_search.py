@@ -41,19 +41,59 @@ class DenseRetrievalExactSearch:
         return distances, indices
     
     def dot_product_faiss(self, query_embeddings, corpus_embeddings):
-        index = faiss.IndexFlatIP(query_embeddings.shape[1])  
-        index = faiss.index_cpu_to_gpu(self.res, 0, index)  
-        
-        
+        dim = query_embeddings.shape[1]
         corpus_embeddings = corpus_embeddings.cpu().numpy().astype(np.float32) if isinstance(corpus_embeddings, torch.Tensor) else corpus_embeddings
         query_embeddings = query_embeddings.cpu().numpy().astype(np.float32) if isinstance(query_embeddings, torch.Tensor) else query_embeddings
-        
-        logger.info("Query embeddings shape:{}".format(query_embeddings.shape))
-        logger.info("Corpus embeddings shape:{}".format(corpus_embeddings.shape))
-        
-        
-        index.add(corpus_embeddings)
-        distances, indices = index.search(query_embeddings, self.top_k)
+
+        num_gpus = faiss.get_num_gpus()
+        logger.info(f"Using {num_gpus} GPUs for FAISS search.")
+
+        # 初始化每个 GPU 上的资源和索引
+        gpu_resources = [faiss.StandardGpuResources() for _ in range(num_gpus)]
+        gpu_indices = []
+        index_offsets = []
+
+        shard_size = len(corpus_embeddings) // num_gpus
+
+        for i in range(num_gpus):
+            start = i * shard_size
+            end = (i + 1) * shard_size if i < num_gpus - 1 else len(corpus_embeddings)
+            sub_corpus = corpus_embeddings[start:end]
+
+            cpu_index = faiss.IndexFlatIP(dim)
+            gpu_index = faiss.index_cpu_to_gpu(gpu_resources[i], i, cpu_index)
+            gpu_index.add(sub_corpus)
+            gpu_indices.append(gpu_index)
+            index_offsets.append(start)
+
+        logger.info("All FAISS indices loaded onto GPUs. Start searching...")
+
+        all_scores, all_indices = [], []
+
+        for i in range(0, len(query_embeddings), self.batch_size):
+            q_batch = query_embeddings[i: i + self.batch_size]
+            batch_scores, batch_indices = [], []
+
+            for j, gpu_index in enumerate(gpu_indices):
+                D, I = gpu_index.search(q_batch, self.top_k)
+                I += index_offsets[j]
+                batch_scores.append(D)
+                batch_indices.append(I)
+
+            # 合并多个 GPU 的结果
+            batch_scores = np.hstack(batch_scores)
+            batch_indices = np.hstack(batch_indices)
+
+            topk_idx = np.argsort(batch_scores, axis=1)[:, -self.top_k:][:, ::-1]
+            topk_scores = np.take_along_axis(batch_scores, topk_idx, axis=1)
+            topk_indices = np.take_along_axis(batch_indices, topk_idx, axis=1)
+
+            all_scores.append(topk_scores)
+            all_indices.append(topk_indices)
+
+        distances = np.vstack(all_scores)
+        indices = np.vstack(all_indices)
+
         return distances, indices
 
     
