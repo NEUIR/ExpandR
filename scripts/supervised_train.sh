@@ -6,7 +6,7 @@ CUDA_VISIBLE_DEVICES=1,2 torchrun --nproc_per_node 2 --master_port=29501 \
     --output_dir LLM-QE/model/supervised_ckpts/$formatted_time/ \
     --model_name_or_path LLM-QE/model/base_model/contriever \
     --train_data LLM-QE/data/process_data/supervised-data/gen-data/train_data.jsonl \
-    --learning_rate 3e-5 \
+    --learning_rate 1e-5 \
     --train_group_size 2 \
     --num_train_epochs 3 \
     --sentence_pooling_method 'mean' \
