@@ -39,6 +39,7 @@ class TrainDatasetForEmbedding(Dataset):
 
     def __getitem__(self, item) -> Tuple[str, List[str]]:
         query = self.dataset[item]['query']
+        indoc = self.dataset[item]['pseudo_doc']
         if self.args.query_instruction_for_retrieval is not None:
             query = self.args.query_instruction_for_retrieval + query
 
@@ -56,7 +57,7 @@ class TrainDatasetForEmbedding(Dataset):
         # pdb.set_trace()
         if self.args.passage_instruction_for_retrieval is not None:
             passages = [self.args.passage_instruction_for_retrieval+p for p in passages]
-        return query, passages
+        return query, indoc,  passages
 
 
 @dataclass
@@ -88,8 +89,10 @@ class EmbedCollator(DataCollatorWithPadding):
         return new_teacher_score
 
     def __call__(self, features):
+        
         query = [f[0] for f in features]
-        passage = [f[1] for f in features]
+        pseudo_doc = [f[1] for f in features]
+        passage = [f[2] for f in features]
 
         if isinstance(query[0], list):
             query = sum(query, [])
@@ -103,6 +106,13 @@ class EmbedCollator(DataCollatorWithPadding):
             max_length=self.query_max_len,
             return_tensors="pt",
         )
+        pseudo_doc_collated = self.tokenizer(
+            query,
+            padding=True,
+            truncation=True,
+            max_length=self.passage_max_len,
+            return_tensors="pt",
+        )
         d_collated = self.tokenizer(
             passage,
             padding=True,
@@ -110,4 +120,4 @@ class EmbedCollator(DataCollatorWithPadding):
             max_length=self.passage_max_len,
             return_tensors="pt",
         )
-        return {"query": q_collated, "passage": d_collated}
+        return {"query": q_collated, 'pseudo_doc':pseudo_doc_collated,  "passage": d_collated}
