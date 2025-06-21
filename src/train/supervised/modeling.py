@@ -79,14 +79,21 @@ class BiEncoderModel(nn.Module):
             return torch.matmul(q_reps, p_reps.transpose(0, 1))
         return torch.matmul(q_reps, p_reps.transpose(-2, -1))
 
-    def forward(self, query: Dict[str, Tensor] = None, passage: Dict[str, Tensor] = None, teacher_score: Tensor = None):
-        q_reps = self.encode(query)
-        p_reps = self.encode(passage)
+    def forward(self, query: Dict[str, Tensor] = None, pseudo_doc: Dict[str, Tensor] = None, passage: Dict[str, Tensor] = None, teacher_score: Tensor = None):
+        q_reps = self.encode(query)  # bsz seq_len
+        pseudo_doc_reps = self.encode(pseudo_doc)   
+        
+        q_reps = (q_reps+pseudo_doc_reps) /2
+        # import pdb
+        # pdb.set_trace()
+        
+        p_reps = self.encode(passage)   # bsz groupsize hidden_size
         # import pdb
         # pdb.set_trace()
         if self.training:
             if self.negatives_cross_device and self.use_inbatch_neg:
                 q_reps = self._dist_gather_tensor(q_reps)
+                pseudo_doc_reps = self._dist_gather_tensor(pseudo_doc_reps)
                 p_reps = self._dist_gather_tensor(p_reps)
 
             group_size = p_reps.size(0) // q_reps.size(0)
