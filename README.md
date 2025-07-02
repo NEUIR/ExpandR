@@ -70,15 +70,15 @@ python ExpandR/src/split.py
 ```
 
 ###  2. Supervised Contrastive Training
-You can download the checkpoint of our trained Contriever directly from [here](https://huggingface.co/yaosijiaaaaa/LLM-QE-Contriever) and use it, or follow the flow below to train it.
+You can download the checkpoint of our trained AnchorDR directly from [here] and use it, or follow the flow below to train it.
 
 (1) First step: Download the related model
 
-You need to download [Contriever](https://huggingface.co/facebook/contriever/tree/main) model as the vanilla retriever Model.
+You need to download [AnchorDR](https://huggingface.co/yiqingx/AnchorDR/tree/main) model as the vanilla retriever Model.
 
 (2) Second step: Construct supervised contrastive training data
 
-Then you can construct a dataset for supervised training by running this script, which includes generating query expansion using LLM and dividing the dataset. Our constructed dataset has been uploaded to [huggingface](https://huggingface.co/datasets/chengpingan/LLM-QE-Retriever-Training-Data). You can download and use them directly.
+Then you can construct a dataset for supervised training by running this script, which includes generating query expansion using LLM and dividing the dataset. Our constructed dataset has been uploaded to [huggingface]. You can download and use them directly.
 ```
 bash gen_supervised_data.sh
 ```
