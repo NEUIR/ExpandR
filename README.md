@@ -80,13 +80,13 @@ You need to download [AnchorDR](https://huggingface.co/yiqingx/AnchorDR/tree/mai
 
 Then you can construct a dataset for supervised training by running this script, which includes generating query expansion using LLM and dividing the dataset. Our constructed dataset has been uploaded to [huggingface]. You can download and use them directly.
 ```
-bash gen_supervised_data.sh
+bash scripts/gen_supervised_data.sh
 ```
 (3) Third step: Training the retriever Model
 
 After constructing the training data, you can start training the retriever model. 
 ```
-bash supervised_train.sh
+bash scripts/supervised_train.sh
 ```
 
 ### 3. DPO Training
