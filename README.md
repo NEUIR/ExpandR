@@ -87,7 +87,6 @@ bash gen_supervised_data.sh
 
 After constructing the training data, you can start training the retriever model. 
 ```
-cd ExpandR/scripts
 bash supervised_train.sh
 ```
 
