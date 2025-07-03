@@ -80,17 +80,19 @@ You need to download [AnchorDR](https://huggingface.co/yiqingx/AnchorDR/tree/mai
 
 Then you can construct a dataset for supervised training by running this script, which includes generating query expansion using LLM and dividing the dataset. Our constructed dataset has been uploaded to [huggingface]. You can download and use them directly.
 ```
-bash scripts/gen_supervised_data.sh
+cd ExpandR/scripts
+bash gen_supervised_data.sh
 ```
 (3) Third step: Training the retriever Model
 
 After constructing the training data, you can start training the retriever model. 
 ```
-bash scripts/supervised_train.sh
+cd ExpandR/scripts
+bash supervised_train.sh
 ```
 
 ### 3. DPO Training
-You can download the lora checkpoint of LLM-QE directly from [here](https://huggingface.co/yaosijiaaaaa/LLM-QE-DPO) and merge them, or follow the flow below to train LLM-QE.
+You can download the lora checkpoint of the generator of ExpandR directly from [here] and merge them, or follow the flow below to train it.
 
 (1) First step: Download the related model
 
@@ -98,9 +100,9 @@ You need to download [lama3-8B-Instruct](https://huggingface.co/meta-llama/Meta-
 
 (2) Second step: Construct dpo training data
 
-Then you can construct a dataset for dpo training by running this script, which includes multiple steps such as generating query expansion using LLM, reward model filtering data, and dividing the dataset. Our constructed dataset has been uploaded to [huggingface](https://huggingface.co/datasets/chengpingan/LLM-QE-DPO-Training-Data). You can download and use them directly.
+Then you can construct a dataset for dpo training by running this script, which includes multiple steps such as generating query expansion using LLM, reward model filtering data, and dividing the dataset. Our constructed dataset has been uploaded to [huggingface]. You can download and use them directly.
 ```
-cd LLM-QE/scripts
+cd ExpandR/scripts
 bash gen_dpo_data.sh
 ```
 (3) Third step: Training the Generation Model
