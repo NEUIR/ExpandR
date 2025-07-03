@@ -121,7 +121,7 @@ bash merge_lora.sh
 After training the ExpandR model, you can test the performance of ExpandR on Beir using the following command (Multi-GPU evaluation is supported).
 
 ```
-CUDA_VISIBLE_DEVICES=0 bash eval_beir_15.sh
+CUDA_VISIBLE_DEVICES=0 bash ExpandR/scripts/eval_beir_15.sh
 ```
 
 ## 📚 Citation
