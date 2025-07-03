@@ -121,14 +121,14 @@ bash merge_lora.sh
 After training the ExpandR model, you can test the performance of ExpandR on Beir using the following command (Multi-GPU evaluation is supported).
 
 ```
-bash eval_beir_15.sh
+CUDA_VISIBLE_DEVICES=0 bash eval_beir_15.sh
 ```
 
 ## 📚 Citation
 If you find this work useful, please cite our paper and give us a shining star 🌟
 ```
-@misc{yao2025llmqeimprovingqueryexpansion,
-      title={LLM-QE: Improving Query Expansion by Aligning Large Language Models with Ranking Preferences}, 
+@misc{yao2025expandrteachingdenseretrievers,
+      title={ExpandR: Teaching Dense Retrievers Beyond Queries with LLM Guidance}, 
       author={Sijia Yao and Pengcheng Huang and Zhenghao Liu and Yu Gu and Yukun Yan and Shi Yu and Ge Yu},
       year={2025},
       eprint={2502.17057},
