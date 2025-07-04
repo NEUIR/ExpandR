@@ -8,6 +8,17 @@
 [![HuggingFace](https://img.shields.io/badge/HuggingFace-Retriever--Training--Data-green?logo=huggingface)](https://huggingface.co/datasets/chengpingan/LLM-QE-Retriever-Training-Data)
 
 
+<div align="center">
+<p align="center" dir="auto">
+
+• 📖 [Overview](#-Overview) 
+• ⚙️ [Setup](#-Setup) 
+• 🏋️‍♂️ [Training](#-Training) 
+• 📊 [Evaluation](#-Evaluation)
+• 📚 [Citation](#-Citation)
+• 📨 [Contact](#-contact)
+</p>
+</div>
 
 ## 📖 Overview
 We introduce ExpandR, a joint optimization framework that enhances dense retrieval by aligning Large Language Models (LLMs) with retriever preferences through query expansion.
@@ -22,7 +33,7 @@ ExpandR prompts LLMs to generate query expansions and uses them to guide both re
 git clone git@github.com:NEUIR/ExpandR.git
 cd ExpandR
 ```
-(2) Install the following packages using Pip or Conda under your environment
+(2) Install the following packages using Pip or Conda under your environment （Please make sure to install the dependencies **in the order** listed to avoid version conflicts.）
 ```
 Python=3.10.14
 torch=1.13.1
@@ -37,14 +48,12 @@ cd src/beir
 pip install -e .
 faiss-gpu==1.7.2
 jsonlines
-
 sentence-transformers==2.2.2
 datasets==1.18.3
 numpy==1.23.5
 
 cd src/transformers
 pip install -e .
-
 omegaconf==2.0.6
 hydra-core==1.0.7
 sacrebleu==2.3.1
@@ -52,7 +61,7 @@ editdistance
 huggingface_hub==0.13.4
 ```
 
-## 🏋️‍♂️ Training ExpandR:
+## 🏋️‍♂️ Training:
 
 ### 1. Prepare the Data
 we use eight datasets from the public portion of dataset curated by authors of [Repetition Improves Language Model Embeddings](https://arxiv.org/abs/2402.15449). The dataset can be downloaded from the [GitHub page of Echo embeddings repository](https://github.com/jakespringer/echo-embeddings#training). To use the training script, the downloaded dataset should be placed in the `data` directory. The directory layout should be as follows:
