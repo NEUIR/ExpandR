@@ -13,10 +13,10 @@
 
 • 📖 [Overview](#-Overview) 
 • ⚙️ [Setup](#-Setup) 
-• 🏋️‍♂️ [Training](#-Training) 
+• 🏋️‍♂️ [Training](#%EF%B8%8F%EF%B8%8F-training) 
 • 📊 [Evaluation](#-Evaluation)
 • 📚 [Citation](#-Citation)
-• ✉️ [Contact](#-Contact)
+• ✉️ [Contact](#-%EF%B8%8F-contact)
 </p>
 </div>
 
