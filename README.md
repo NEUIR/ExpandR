@@ -16,7 +16,7 @@
 • 🏋️‍♂️ [Training](#-Training) 
 • 📊 [Evaluation](#-Evaluation)
 • 📚 [Citation](#-Citation)
-• 📨 [Contact](#-contact)
+• ✉️ [Contact](#-Contact)
 </p>
 </div>
 
