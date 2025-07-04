@@ -25,21 +25,31 @@ cd ExpandR
 (2) Install the following packages using Pip or Conda under your environment
 ```
 Python=3.10.14
-torch=2.5.1
-transformers==4.41.2
+torch=1.13.1
 tqdm
-trl==0.12.2
-vllm==0.5.0.post1
-accelerate==1.3.0
-deepspeed==0.14.4
-peft==0.11.1
-faiss-gpu==1.7.2
-jsonlines
-```
-(3) Install the modified `beir`:
-```
+trl
+vllm
+accelerate
+deepspeed
+peft
+
 cd src/beir
 pip install -e .
+faiss-gpu==1.7.2
+jsonlines
+
+sentence-transformers==2.2.2
+datasets==1.18.3
+numpy==1.23.5
+
+cd src/transformers
+pip install -e .
+
+omegaconf==2.0.6
+hydra-core==1.0.7
+sacrebleu==2.3.1
+editdistance
+huggingface_hub==0.13.4
 ```
 
 ## 🏋️‍♂️ Training ExpandR:
