@@ -48,7 +48,7 @@ class DenseRetrievalExactSearch:
         num_gpus = faiss.get_num_gpus()
         logger.info(f"Using {num_gpus} GPUs for FAISS search.")
 
-        # 初始化每个 GPU 上的资源和索引
+        # Initialize resources and indexes on each GPU
         gpu_resources = [faiss.StandardGpuResources() for _ in range(num_gpus)]
         gpu_indices = []
         index_offsets = []
@@ -80,7 +80,7 @@ class DenseRetrievalExactSearch:
                 batch_scores.append(D)
                 batch_indices.append(I)
 
-            # 合并多个 GPU 的结果
+            # Combining results from multiple GPUs
             batch_scores = np.hstack(batch_scores)
             batch_indices = np.hstack(batch_indices)
 

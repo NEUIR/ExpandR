@@ -8,11 +8,14 @@ from transformers import (
     set_seed,
 )
 
-from arguments import ModelArguments, DataArguments, \
+
+from supervised.arguments import ModelArguments, DataArguments, \
     RetrieverTrainingArguments as TrainingArguments
-from data import TrainDatasetForEmbedding, EmbedCollator
-from modeling import BiEncoderModel
-from trainer import BiTrainer
+from supervised.data import TrainDatasetForEmbedding, EmbedCollator
+# from modeling import BiEncoderModel
+from supervised.modeling import DenseModel
+from supervised.utils import load_stuff
+from supervised.trainer import BiTrainer
 from torch.utils.data import random_split
 logger = logging.getLogger(__name__)
 
@@ -56,25 +59,17 @@ def main():
     set_seed(training_args.seed)
 
     num_labels = 1
-    tokenizer = AutoTokenizer.from_pretrained(
-        model_args.tokenizer_name if model_args.tokenizer_name else model_args.model_name_or_path,
-        cache_dir=model_args.cache_dir,
-        use_fast=False,
-    )
-    config = AutoConfig.from_pretrained(
-        model_args.config_name if model_args.config_name else model_args.model_name_or_path,
-        num_labels=num_labels,
-        cache_dir=model_args.cache_dir,
-    )
+    
+    config, tokenizer = load_stuff(model_args, data_args)
     logger.info('Config: %s', config)
+    model = DenseModel.build(
+        model_args=model_args,
+        data_args=data_args,
+        train_args=training_args,
+        config=config,
+        cache_dir=model_args.cache_dir,
+    )
 
-    model = BiEncoderModel(model_name=model_args.model_name_or_path,
-                           normlized=training_args.normlized,
-                           sentence_pooling_method=training_args.sentence_pooling_method,
-                           negatives_cross_device=training_args.negatives_cross_device,
-                           temperature=training_args.temperature,
-                           use_inbatch_neg=training_args.use_inbatch_neg,
-                           )
 
     if training_args.fix_position_embedding:
         for k, v in model.named_parameters():

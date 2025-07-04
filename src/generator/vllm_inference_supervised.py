@@ -8,6 +8,29 @@ from tqdm import tqdm
 from promptor import Promptor
 import os
 
+def post_process(in_str):
+    patterns = [
+        'Here is a passage to answer the question:',
+        'Here is a passage that answers the question:',
+        'Here is a passage answering the question:',
+        "Here's a passage that attempts to answer the question:",
+        "Here's a passage that answers the question:",
+        "Here's a passage that answers your question:",
+        "Here's a possible passage:",
+        "Here is a possible passage:",
+        "Here is a potential passage:",
+        "Here's a potential passage:",
+        "Here's a passage:",
+        "Here is the passage:",
+        "Here's the passage:"
+    ]
+    for pattern in patterns:
+        if pattern in in_str:
+            in_str = in_str.split(pattern)[1]
+            break
+    return in_str.strip()
+
+
 def generate_doc_for_supervised(args):    
     max_batch_size = 1024
     model_path = args.model_name_or_path
@@ -42,6 +65,8 @@ def generate_doc_for_supervised(args):
                
             outputs = llm.generate(prompts_list, sampling_params)
             for output in outputs:
+                passage = output.outputs[0].text
+                passage = post_process(passage)
                 output_data = {
                     "passage": output.outputs[0].text
                 }
@@ -52,8 +77,11 @@ def generate_doc_for_supervised(args):
     with jsonlines.open(query_path,'r') as reader1, jsonlines.open(save_file, "r") as reader2, jsonlines.open(outfile, "w") as writer:
         for in_data1, in_data2 in zip(reader1, reader2):
             outdata = {}
+            query = in_data1['query']
+            outdata['query'] = query
+            
             doc = in_data2["passage"]
-            outdata['query'] = doc
+            outdata['pseudo_doc'] = doc
             
             pos = []
             pos.append(in_data1['positive'])

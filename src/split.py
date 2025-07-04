@@ -2,11 +2,11 @@ import os
 import random
 
 # raw data file path
-input_file = 'LLM-QE/data/process_data/merge_data_80w.jsonl'
+input_file = 'ExpandR/data/merge_data_80w.jsonl'
 # for dpo training (10w)
-output_file_1 = 'LLM-QE/data/process_data/dpo-data/split_10w.jsonl'
+output_file_1 = 'ExpandR/data/process_data/dpo-data/split_10w.jsonl'
 # for supervised training (708,740)
-output_file_2 = 'LLM-QE/data/process_data/supervised-data/split_70w.jsonl'
+output_file_2 = 'ExpandR/data/process_data/supervised-data/split_70w.jsonl'
 
 sample_size = 100000
 

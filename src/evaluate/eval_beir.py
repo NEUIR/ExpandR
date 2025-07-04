@@ -1,16 +1,18 @@
 
 import argparse
-import torch
 import logging
 import os
 
 import slurm
-import contriever
 import beir_utils
 import utils
 import dist_utils
+from utils import load_stuff
 
-from transformers import RobertaTokenizer, RobertaConfig
+
+from evaluate.modeling import DenseModelForInference
+from evaluate.arguments import ModelArguments
+
 
 logger = logging.getLogger(__name__)
 
@@ -29,7 +31,23 @@ def main(args):
 
     logger = utils.init_logger(args)
     
-    model, tokenizer, _ = contriever.load_retriever(args.model_name_or_path)
+    model_args = ModelArguments(
+        model_name_or_path=args.model_name_or_path,
+        use_t5_decoder=True,
+        use_converted=True
+)
+
+    
+    config, tokenizer = load_stuff(model_args, use_fast=True)
+    
+    model = DenseModelForInference.build(
+        model_name_or_path=model_args.model_name_or_path,
+        model_args=model_args,
+        config=config,
+        cache_dir=model_args.cache_dir,
+    )
+    
+    
     model = model.cuda()
     model.eval()
     query_encoder = model

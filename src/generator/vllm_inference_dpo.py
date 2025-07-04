@@ -7,6 +7,27 @@ from tqdm import tqdm
 import os
 from promptor import Promptor
 
+def post_process(in_str):
+    patterns = [
+        'Here is a passage to answer the question:',
+        'Here is a passage that answers the question:',
+        'Here is a passage answering the question:',
+        "Here's a passage that attempts to answer the question:",
+        "Here's a passage that answers the question:",
+        "Here's a passage that answers your question:",
+        "Here's a possible passage:",
+        "Here is a possible passage:",
+        "Here is a potential passage:",
+        "Here's a potential passage:",
+        "Here's a passage:",
+        "Here is the passage:",
+        "Here's the passage:"
+    ]
+    for pattern in patterns:
+        if pattern in in_str:
+            in_str = in_str.split(pattern)[1]
+            break
+    return in_str.strip()
 
 def generate_doc_for_dpo(args):
     
@@ -49,6 +70,7 @@ def generate_doc_for_dpo(args):
                     outputs = outputs.outputs
                     texts = [output.text for output in outputs]
                     for text in texts:
+                        text = post_process(text)
                         output_data = {
                             "passage": text
                         }

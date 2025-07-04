@@ -107,7 +107,7 @@ class EmbedCollator(DataCollatorWithPadding):
             return_tensors="pt",
         )
         pseudo_doc_collated = self.tokenizer(
-            query,
+            pseudo_doc,
             padding=True,
             truncation=True,
             max_length=self.passage_max_len,

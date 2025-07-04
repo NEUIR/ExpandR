@@ -1,26 +1,26 @@
-# inference
-CUDA_VISIBLE_DEVICES=1 python LLM-QE/src/generator/vllm_inference_eval.py \
-    --model_name_or_path # the path to dpo-llama \
-    --queries_file_name queries_q2d.jsonl \
-    --beir_dir LLM-QE/data/beir \
-    --task_type q2d
+# # inference
+# CUDA_VISIBLE_DEVICES=1 python ExpandR/src/generator/vllm_inference_eval.py \
+#     --model_name_or_path # the path to dpo-llama \
+#     --queries_file_name queries_q2d.jsonl \
+#     --beir_dir ExpandR/data/beir \
+#     --task_type q2d
 
-
+export PYTHONPATH=ExpandR/src
 # eval
-BEIR_DIR=LLM-QE/data/beir
+BEIR_DIR=ExpandR/data/beir
 
-EMBEDDINGS_FILE_DIR=LLM-QE/data/corpus_embeddings
+EMBEDDINGS_FILE_DIR=ExpandR/data/corpus_embeddings
 
-MODEL_PATH='' # The path of the trained Contriever model
+MODEL_PATH='' # The path of the trained anchordr model
 
 OUTPUT_DIR_BASE='' # the path to save eval results
 
 cur_query_file_name='queries_q2d.jsonl'
 
-caqd_path_dir='LLM-QE/data/beir/cqadupstack'
+caqd_path_dir='ExpandR/data/beir/cqadupstack'
 
 # msmarco
-python LLM-QE/src/evaluate/eval_beir.py \
+python ExpandR/src/evaluate/eval_beir.py \
     --beir_dir $BEIR_DIR \
     --model_name_or_path $MODEL_PATH \
     --embeddings_file $EMBEDDINGS_FILE_DIR/msmarco_embeddings.npy \
@@ -31,7 +31,7 @@ python LLM-QE/src/evaluate/eval_beir.py \
 
 
 # trec-covid
-python LLM-QE/src/evaluate/eval_beir.py \
+python ExpandR/src/evaluate/eval_beir.py \
     --beir_dir $BEIR_DIR \
     --model_name_or_path $MODEL_PATH \
     --embeddings_file $EMBEDDINGS_FILE_DIR/trec-covid_embeddings.npy \
@@ -42,7 +42,7 @@ python LLM-QE/src/evaluate/eval_beir.py \
 
 
 # nfcorpus
-python LLM-QE/src/evaluate/eval_beir.py \
+python ExpandR/src/evaluate/eval_beir.py \
     --beir_dir $BEIR_DIR \
     --model_name_or_path $MODEL_PATH \
     --embeddings_file $EMBEDDINGS_FILE_DIR/nfcorpus_embeddings.npy \
@@ -52,7 +52,7 @@ python LLM-QE/src/evaluate/eval_beir.py \
     --query_file_name $cur_query_file_name
 
 # nq
-python LLM-QE/src/evaluate/eval_beir.py \
+python ExpandR/src/evaluate/eval_beir.py \
     --beir_dir $BEIR_DIR \
     --model_name_or_path $MODEL_PATH \
     --embeddings_file $EMBEDDINGS_FILE_DIR/nq_embeddings.npy \
@@ -63,7 +63,7 @@ python LLM-QE/src/evaluate/eval_beir.py \
 
 
 # hotpotqa
-python LLM-QE/src/evaluate/eval_beir.py \
+python ExpandR/src/evaluate/eval_beir.py \
     --beir_dir $BEIR_DIR \
     --model_name_or_path $MODEL_PATH \
     --embeddings_file $EMBEDDINGS_FILE_DIR/hotpotqa_embeddings.npy \
@@ -74,7 +74,7 @@ python LLM-QE/src/evaluate/eval_beir.py \
 
 
 # fiqa
-python LLM-QE/src/evaluate/eval_beir.py \
+python ExpandR/src/evaluate/eval_beir.py \
     --beir_dir $BEIR_DIR \
     --model_name_or_path $MODEL_PATH \
     --embeddings_file $EMBEDDINGS_FILE_DIR/fiqa_embeddings.npy \
@@ -85,7 +85,7 @@ python LLM-QE/src/evaluate/eval_beir.py \
 
 
 # arguana
-python LLM-QE/src/evaluate/eval_beir.py \
+python ExpandR/src/evaluate/eval_beir.py \
     --beir_dir $BEIR_DIR \
     --model_name_or_path $MODEL_PATH \
     --embeddings_file $EMBEDDINGS_FILE_DIR/arguana_embeddings.npy \
@@ -96,7 +96,7 @@ python LLM-QE/src/evaluate/eval_beir.py \
 
 
 # webis-touche2020
-python LLM-QE/src/evaluate/eval_beir.py \
+python ExpandR/src/evaluate/eval_beir.py \
     --beir_dir $BEIR_DIR \
     --model_name_or_path $MODEL_PATH \
     --embeddings_file $EMBEDDINGS_FILE_DIR/webis-touche2020_embeddings.npy \
@@ -107,7 +107,7 @@ python LLM-QE/src/evaluate/eval_beir.py \
 
 
 # cqadupstack
-python LLM-QE/src/evaluate/eval_beir.py \
+python ExpandR/src/evaluate/eval_beir.py \
     --beir_dir $BEIR_DIR \
     --model_name_or_path $MODEL_PATH \
     --embeddings_file $EMBEDDINGS_FILE_DIR/cqadupstack_embeddings.npy \
@@ -119,7 +119,7 @@ python LLM-QE/src/evaluate/eval_beir.py \
 
 
 # quora
-python LLM-QE/src/evaluate/eval_beir.py \
+python ExpandR/src/evaluate/eval_beir.py \
     --beir_dir $BEIR_DIR \
     --model_name_or_path $MODEL_PATH \
     --embeddings_file $EMBEDDINGS_FILE_DIR/quora_embeddings.npy \
@@ -130,7 +130,7 @@ python LLM-QE/src/evaluate/eval_beir.py \
 
 
 # dbpedia-entity
-python LLM-QE/src/evaluate/eval_beir.py \
+python ExpandR/src/evaluate/eval_beir.py \
     --beir_dir $BEIR_DIR \
     --model_name_or_path $MODEL_PATH \
     --embeddings_file $EMBEDDINGS_FILE_DIR/dbpedia-entity_embeddings.npy \
@@ -141,7 +141,7 @@ python LLM-QE/src/evaluate/eval_beir.py \
 
 
 # scidocs
-python LLM-QE/src/evaluate/eval_beir.py \
+python ExpandR/src/evaluate/eval_beir.py \
     --beir_dir $BEIR_DIR \
     --model_name_or_path $MODEL_PATH \
     --embeddings_file $EMBEDDINGS_FILE_DIR/scidocs_embeddings.npy \
@@ -152,7 +152,7 @@ python LLM-QE/src/evaluate/eval_beir.py \
 
 
 # fever
-python LLM-QE/src/evaluate/eval_beir.py \
+python ExpandR/src/evaluate/eval_beir.py \
     --beir_dir $BEIR_DIR \
     --model_name_or_path $MODEL_PATH \
     --embeddings_file $EMBEDDINGS_FILE_DIR/fever_embeddings.npy \
@@ -163,7 +163,7 @@ python LLM-QE/src/evaluate/eval_beir.py \
 
 
 # climate-fever
-python LLM-QE/src/evaluate/eval_beir.py \
+python ExpandR/src/evaluate/eval_beir.py \
     --beir_dir $BEIR_DIR \
     --model_name_or_path $MODEL_PATH \
     --embeddings_file $EMBEDDINGS_FILE_DIR/climate-fever_embeddings.npy \
@@ -174,7 +174,7 @@ python LLM-QE/src/evaluate/eval_beir.py \
 
 
 # scifact
-python LLM-QE/src/evaluate/eval_beir.py \
+python ExpandR/src/evaluate/eval_beir.py \
     --beir_dir $BEIR_DIR \
     --model_name_or_path $MODEL_PATH \
     --embeddings_file $EMBEDDINGS_FILE_DIR/scifact_embeddings.npy \
