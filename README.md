@@ -1,22 +1,33 @@
 # ExpandR: Teaching Dense Retrievers Beyond Queries with LLM Guidance
 
+
+<div align="center">
+<p align="center" dir="auto">
+
 [![GitHub](https://img.shields.io/badge/GitHub-ExpandR-black?logo=github)](https://github.com/NEUIR/ExpandR)
 [![arXiv](https://img.shields.io/badge/arXiv-2502.17057-B31B1B?logo=arxiv&logoColor=white)](https://arxiv.org/abs/2502.17057)
-[![HuggingFace](https://img.shields.io/badge/HuggingFace-ExpandR--DPO-yellow?logo=huggingface)](https://huggingface.co/yaosijiaaaaa/LLM-QE-DPO)
-[![HuggingFace](https://img.shields.io/badge/HuggingFace-ExpandR--Contriever-orange?logo=huggingface)](https://huggingface.co/yaosijiaaaaa/LLM-QE-Contriever)
-[![HuggingFace](https://img.shields.io/badge/HuggingFace-DPO--Training--Data-blue?logo=huggingface)](https://huggingface.co/datasets/chengpingan/LLM-QE-DPO-Training-Data)
-[![HuggingFace](https://img.shields.io/badge/HuggingFace-Retriever--Training--Data-green?logo=huggingface)](https://huggingface.co/datasets/chengpingan/LLM-QE-Retriever-Training-Data)
+[![HuggingFace](https://img.shields.io/badge/HuggingFace-ExpandR--Collections-yellow?logo=huggingface)](https://huggingface.co/collections/chengpingan/expandr-6868f00180f9faf8926b89f8)
+[![HuggingFace](https://img.shields.io/badge/HuggingFace-ExpandR--LLM-yellow?logo=huggingface)](https://huggingface.co/chengpingan/ExpandR_LLM)
 
+</p>
+<p align="center" dir="auto">
+
+[![HuggingFace](https://img.shields.io/badge/HuggingFace-ExpandR--Contriever-orange?logo=huggingface)](https://huggingface.co/chengpingan/ExpandR_Retriever)
+[![HuggingFace](https://img.shields.io/badge/HuggingFace-DPO--Training--Data-blue?logo=huggingface)](https://huggingface.co/datasets/chengpingan/ExpandR_llm_training_data)
+[![HuggingFace](https://img.shields.io/badge/HuggingFace-Retriever--Training--Data-green?logo=huggingface)](https://huggingface.co/datasets/chengpingan/ExpandR_retriever_training_data)
+</p>
+</div>
 
 <div align="center">
 <p align="center" dir="auto">
 
 • 📖 [Overview](#-Overview) 
+• 🤗 [Collections](#-Collections) 
 • ⚙️ [Setup](#-Setup) 
 • 🏋️‍♂️ [Training](#%EF%B8%8F%EF%B8%8F-training) 
 • 📊 [Evaluation](#-Evaluation)
 • 📚 [Citation](#-Citation)
-• ✉️ [Contact](#-%EF%B8%8F-contact)
+• ✉️ [Contact](#%EF%B8%8F-contact)
 </p>
 </div>
 
@@ -26,6 +37,16 @@ We introduce ExpandR, a joint optimization framework that enhances dense retriev
 ExpandR prompts LLMs to generate query expansions and uses them to guide both retriever training and LLM refinement. To improve alignment, ExpandR incorporates retriever reward and self-reward signals and applies Direct Preference Optimization (DPO) to fine-tune the LLM. This joint training strategy encourages the LLM to generate expansions that are not only semantically rich but also tailored to the retrieval utility of dense retrievers. 
 ![method](assets/expandr.png)
 
+## 🤗 Collections
+
+We have made the following resources available in our [🤗ExpandR collection](https://huggingface.co/collections/chengpingan/expandr-6868f00180f9faf8926b89f8) on Hugging Face.
+
+| Resource         | Description                                         | Link                                                      |
+|------------------|-----------------------------------------------------|-----------------------------------------------------------|
+| LLM    | The query expansion model, developed using Llama-3-8B	  | [🤗ExpandR_LLM](https://huggingface.co/chengpingan/ExpandR_LLM) |
+| Retriever    | The retriever, developed based on AnchorDr	  | [🤗ExpandR_Retriever](https://huggingface.co/chengpingan/ExpandR_Retriever) |
+| LLM Training data | data used for training the query expansion model | [🤗ExpandR_llm_training_data](https://huggingface.co/datasets/chengpingan/ExpandR_llm_training_data) |
+| Retriever Training data | data used for training the retriever | [🤗ExpandR_retriever_training_data](https://huggingface.co/datasets/chengpingan/ExpandR_retriever_training_data) |
 
 ## ⚙️ Setup
 (1) Use `git clone` to download this project:
