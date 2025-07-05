@@ -45,8 +45,8 @@ We have made the following resources available in our [🤗ExpandR collection](h
 |------------------|-----------------------------------------------------|-----------------------------------------------------------|
 | LLM    | The query expansion model, developed using Llama-3-8B	  | [🤗ExpandR_LLM](https://huggingface.co/chengpingan/ExpandR_LLM) |
 | Retriever    | The retriever, developed based on AnchorDr	  | [🤗ExpandR_Retriever](https://huggingface.co/chengpingan/ExpandR_Retriever) |
-| LLM Training data | data used for training the query expansion model | [🤗ExpandR_llm_training_data](https://huggingface.co/datasets/chengpingan/ExpandR_llm_training_data) |
-| Retriever Training data | data used for training the retriever | [🤗ExpandR_retriever_training_data](https://huggingface.co/datasets/chengpingan/ExpandR_retriever_training_data) |
+| LLM Training data | the data used to train the query expansion model | [🤗llm_training_data](https://huggingface.co/datasets/chengpingan/ExpandR_llm_training_data) |
+| Retriever Training data | the data used to train the retriever | [🤗retriever_training_data](https://huggingface.co/datasets/chengpingan/ExpandR_retriever_training_data) |
 
 ## ⚙️ Setup
 (1) Use `git clone` to download this project:
@@ -94,7 +94,7 @@ data
     ├─ fever.jsonl 
     ├─ hotpot_qa.jsonl
     ├─ msmarco_document.jsonl
-    ├─ msmaroc_passage.jsonl
+    ├─ msmarco_passage.jsonl
     ├─ nq.jsonl
     ├─ squad.jsonl
     ├─ trivia_qa.jsonl
