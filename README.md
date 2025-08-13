@@ -12,7 +12,7 @@
 </p>
 <p align="center" dir="auto">
 
-[![HuggingFace](https://img.shields.io/badge/HuggingFace-ExpandR--Contriever-orange?logo=huggingface)](https://huggingface.co/chengpingan/ExpandR_Retriever)
+[![HuggingFace](https://img.shields.io/badge/HuggingFace-ExpandR--AnchorDR-orange?logo=huggingface)](https://huggingface.co/chengpingan/ExpandR_Retriever)
 [![HuggingFace](https://img.shields.io/badge/HuggingFace-DPO--Training--Data-blue?logo=huggingface)](https://huggingface.co/datasets/chengpingan/ExpandR_llm_training_data)
 [![HuggingFace](https://img.shields.io/badge/HuggingFace-Retriever--Training--Data-green?logo=huggingface)](https://huggingface.co/datasets/chengpingan/ExpandR_retriever_training_data)
 </p>
